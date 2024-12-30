@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Student Record Form</h2>
+  <div class="needs-validation" novalidate>
+    <!-- Student Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Student Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter student name"
+        [(ngModel)]="studentName"
+        (ngModelChange)="(studentName)"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter student email"
+        [(ngModel)]="studentEmail"
+      />
+
+      <!-- Age -->
+      <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          placeholder="Enter student age"
+          [(ngModel)]="studentAge"
+        />
+        <div class="invalid-feedback">Age must be a positive number!</div>
+      </div>
+
+      <!-- Grade -->
+      <div class="mb-3">
+        <label for="grade" class="form-label">Grade</label>
+        <select id="grade" [(ngModel)]="studentGrade" class="form-select">
+          <option value="">Select grade</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" (click)="submitForm()" class="btn me-1 btn-primary">
+        Submit
+      </button>
+       <button type="button" (click)="showData()" class="btn btn-primary">
+        Show Student Records
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- @if(isData){ -->
+
+<div *ngIf="isData" class="container mt-5" >
+    <div class="row">
+        <div class="col-3 mt-2" *ngFor="let student of submitArray">  
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">Student</h5>
+      <div class="row">
+        <div class="col-6">
+          <h6>Name:{{student.name}}</h6>
+        </div>
+        <div class="col-6">
+          <h6>Age:{{student.age}}</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h6>Email:{{student.email}}</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+            <h6>Grade:{{student.grade}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- } -->

@@ -1,0 +1,20 @@
+<div class="card" style="width: 100%">
+  <div class="card-body">
+    <div class="mb-1"><i class="fa-solid fa-user" role="button"></i></div>
+    <h5 class="">{{ element.firstName }} {{ element.lastName }}</h5>
+    <h6>{{ element.inputAddress }}</h6>
+    <h6>{{ findStateName(element.state) }}</h6>
+    <h6>{{ findCityNameById(element.city) }}</h6>
+    <h6>{{ element.inputZip }}</h6>
+    <button
+      class="btn btn-danger"
+      (click)="deletData(element.id)"
+      [disabled]="updateBtnOn"
+    >
+      Delete Data
+    </button>
+    <button class="btn btn-dark ms-2" (click)="editData(element.id)">
+      Edit Data
+    </button>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<!-- <div *ngIf="isTable" (click)="changeTable()">Table is True</div>
+
+  <div *ngIf="!isTable" (click)="opChangeTable()">Table is False</div> -->
+<!-- 
+  <div *ngIf="isTable; else student" (click)="changeTable()">
+    Content when the Table is True.
+  </div>
+
+  <ng-5 #student>
+    <div (click)="changeTable()">Content when the Table is false.</div>
+  </ng-template> -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4" *ngFor="let record of records">
+      <div
+        class="card mt-4"
+        *ngIf="record.type == 'Student'; else teacherCard "
+        style="width: 32rem"
+      >
+        <div class="card-header">{{ record.type }}</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name : {{ record.name }}</li>
+          <li class="list-group-item">PH Number : {{ record.phNumber }}</li>
+        </ul>
+        <div class="card m-3" style="width: 30rem">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sno.</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Max Marks</th>
+                <th scope="col">Practical</th>
+                <th scope="col">Theory</th>
+                <th scope="col">Marks Obt</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let subject of record.subjects">
+              <tr>
+                <th scope="row">{{ subject.sno }}</th>
+                <td>{{ subject.name }}</td>
+                <td>{{ subject.maxMarks }}</td>
+                <td>{{ subject.practical }}</td>
+                <td>{{ subject.theoryMarks }}</td>
+                <td
+                  [ngClass]="{
+                    'bg-red':
+                      (subject.theoryMarks + subject.practical) /
+                        subject.maxMarks < 0.4 ,
+                        'bg-green':
+                      (subject.theoryMarks + subject.practical) /
+                        subject.maxMarks > 0.4 && 
+                      (subject.theoryMarks + subject.practical) /
+                        subject.maxMarks < 0.6 ,
+                        'bg-blue':
+                      (subject.theoryMarks + subject.practical) /
+                        subject.maxMarks > 0.6 && 
+                      (subject.theoryMarks + subject.practical) /
+                        subject.maxMarks < 0.75,
+                        'bg-orange':
+                      (subject.theoryMarks + subject.practical) /
+                        subject.maxMarks > 0.75 
+                  }"
+                >
+                  {{
+                    subject.theoryMarks
+                      | totalPercent : subject.practical : subject.maxMarks
+                      | percentage
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <ng-template   #teacherCard>
+      <div
+        class="card mt-4"
+ 
+        style="width: 32rem"
+      >
+        <div class="card-header">{{ record.type }}</div>
+        <div class="container">
+          <div class="row">
+            <div class="col-6 mt-2">Name : {{ record.name }}</div>
+            <div class="col-6 mt-2">PH Number : {{ record.phNumber }}</div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-6" *ngFor="let subject of record.subjects">
+              <div class="card mb-2 mt-2">
+                <div
+                  class="card-header"
+                  [ngClass]="{
+                    'bg-red': subject.pass > 0 && subject.pass <= 30,
+                    'bg-orange': subject.pass > 30 && subject.pass <= 50,
+                    'bg-blue': subject.pass > 50 && subject.pass <= 60,
+                    'bg-green': subject.pass > 60 && subject.pass <= 99
+                  }"
+                >
+                  {{ subject.name }} - {{ subject.pass | percentage }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    </div>
+  </div>
+</div>

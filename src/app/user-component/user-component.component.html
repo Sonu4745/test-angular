@@ -1,0 +1,15 @@
+<!-- <div class="ms-4" *ngFor="let item of selectedUser">
+    <button class="btn btn-primary mb-2">
+<img [src]= "'assets/image/' + item.img "  alt="">
+<span class="ms-2" >{{item.name}}</span>
+    </button>
+</div> -->
+
+<button class="btn btn-primary mb-2 w-100" (click)="onSelect()">
+  <img src="{{ imagePath }}" alt="img" />
+  <span class="ms-2">{{ user.name }}</span>
+</button>
+
+<!-- <div class="ms-4" *ngFor="let item of selectedUser"> -->
+<!-- <div class="">{{name}}</div> -->
+<!-- </div> -->

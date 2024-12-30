@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-center flex-lg-column gap-2">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="search"
+      [(ngModel)]="searchText"
+    />
+
+    <!-- <input type="text" class="form-control" placeholder="search" [(ngModel)]="searchText2" /> -->
+
+    <button class="btn btn-dark" (click)="searchData()">Search</button>
+  </div>
+
+  <div class="card mt-5" *ngIf="isShow">
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-3">State Name</div>
+            <div class="col-3">City Name</div>
+            <div class="col-3">State Value</div>
+            <div class="col-3">City Value</div>
+          </div>
+        </li>
+
+        <li class="list-group-item" *ngFor="let city of filteredcity">
+          <div class="row">
+            <div class="col-3">{{ filteredState.stateName }}</div>
+            <div class="col-3">{{ city.cityName }}</div>
+            <div class="col-3">{{ filteredState.stateValue }}</div>
+            <div class="col-3">{{ city.cityValue }}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

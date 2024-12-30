@@ -1,0 +1,16 @@
+.bg-red{
+    background-color: rgb(213, 17, 17);
+    color: white;
+}
+.bg-green{
+    background-color: rgb(52, 74, 52);
+    color: white;   
+}
+.bg-blue{
+    background-color: rgb(52, 81, 222);
+    color: white;
+}
+.bg-orange{
+    background-color: rgb(200, 114, 27);
+    color: white;
+}

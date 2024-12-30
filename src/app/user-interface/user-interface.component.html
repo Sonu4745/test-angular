@@ -1,0 +1,204 @@
+<div class="container g-0" style="padding-left: 200px; padding-right: 200px">
+  <div class="row g-3 mt-5">
+    <div class="col-md-6">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        [(ngModel)]="firstName"
+      />
+      <!-- <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      [value]="firstName"
+       [(ngModel)]="firstName"
+      #fName
+      (keydown)="onChangeOfFirstName($event)"
+    /> -->
+    </div>
+    <div class="col-md-6">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        [(ngModel)]="lastName"
+      />
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputAddress"
+        placeholder=""
+        [(ngModel)]="inputAddress"
+      />
+    </div>
+
+    <div class="col-md-5">
+      <label for="inputState" class="form-label">State</label>
+      <select
+        id="inputState"
+        class="form-select"
+        [(ngModel)]="state"
+        (ngModelChange)="onChangeState()"
+      >
+        <option value="" selected disabled>Choose...</option>
+        <option *ngFor="let item of states" [value]="item.id">
+          {{ item.stateName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-5">
+      <label for="inputCity" class="form-label">City</label>
+      <select
+        id="inputCity"
+        class="form-select"
+        [(ngModel)]="city"
+        (ngModelChange)="onChangeCity()"
+      >
+        <option value="0" selected disabled>Choose...</option>
+        <option *ngFor="let cities of filterdCities" value="{{ cities.id }}">
+          {{ cities.cityName }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Zip</label>
+      <input
+        disabled
+        type="text"
+        class="form-control"
+        id="inputZip"
+        [(ngModel)]="inputZip"
+      />
+    </div>
+    <div *ngIf="updateBtnOn" class="row gx-0 g-2">
+      <div class="col-6">
+        <!-- <button
+          ng
+          type="submit"
+          class="btn btn-primary w-100"
+          (click)="updateUser()"
+        >
+          Update Data
+        </button> -->
+      </div>
+      <div class="col-4">
+        <button type="submit" class="btn btn-primary w-100" (click)="getData()">
+          Get Data
+        </button>
+        <!-- <button class="btn btn-primary" (click)="loadData()" > Load Data</button> -->
+      </div>
+      <!-- <div class="col-2">
+        <button class="btn btn-danger w-100" (click)="clearData()">
+          Clear
+        </button> -->
+      <!-- </div> -->
+    </div>
+    <div *ngIf="saveBtnOn" class="row gx-0 g-2">
+      <div class="col-6">
+        <button
+        type="submit"
+        class="btn btn-primary w-100"
+        (click)="saveData()"
+        
+        >
+          Save Data
+        </button>
+      </div>
+      <div class="col-6">
+        <button type="submit" class="btn btn-primary w-100" (click)="getData()">
+          Get Data
+        </button>
+        <!-- <button class="btn btn-primary" (click)="loadData()" > Load Data</button> -->
+      </div>
+    </div>
+<!-- <div class="continer g-0">
+  <div class="row">
+    <div class="col-4">
+      <label for="checkValue" class="form-label">Enter Value </label>
+      <input
+        type="text"
+        class="form-control"
+        id="checkValue"
+    [(ngModel)]="checkValue"
+      />
+      <br>
+     
+
+      <div [ngSwitch]="findResult  % 2">
+         <div *ngSwitchCase="0" >The number is Even</div>
+         <div *ngSwitchCase="1" >The number is odd</div>
+         <div *ngSwitchDefault="" >The value is not Accept</div>
+      </div>
+      <button class="btn btn-success" (click)="getResult()" [ngStyle]="{'float':'right'}">Check</button>
+
+    </div>
+  
+  </div>
+</div> -->
+  </div>
+
+  <div class="">
+   
+  </div>
+  
+  <!-- <div class="row mt-5">
+    <div class="col-4 mb-3" *ngFor="let element of user">
+      <div class="card" style="width: 100%">
+        <div class="card-body">
+          <div class="mb-1"><i class="fa-solid fa-user" role="button"></i></div>
+          <h5 class="">{{ element.firstName }} {{ element.lastName }}</h5>
+          <h6>{{ element.inputAddress }}</h6>
+          <h6>{{ findStateName(element.state) }}</h6>
+          <h6>{{ findCityNameById(element.city) }}</h6>
+          <h6>{{ element.inputZip }}</h6>
+          <button
+            class="btn btn-danger"
+            (click)="deletData(element.id)"
+            [disabled]="updateBtnOn"
+          >
+            Delete Data
+          </button>
+          <button class="btn btn-dark ms-2" (click)="editData(element.id)">
+            Edit Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+</div>
+
+<!-- Button to trigger the modal -->
+<!-- <button type="button" class="btn btn-primary" (click)="openModal()">Open Modal</button> -->
+
+<!-- Modal -->
+<!-- <div class="modal" tabindex="-1" [class]="showModal ? 'd-block' : ''"> -->
+<!-- <div class="modal" tabindex="-1" [ngStyle]="{'display' : showModal ? 'block' : 'none' , 'color':showModal ? 'red':''}"> -->
+<!-- <div class="modal" tabindex="-1" [ngClass]="{'d-block':showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn-close" style="float: right;" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+      <h2>
+        Welcome to my Website !
+      </h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
